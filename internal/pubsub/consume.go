@@ -99,7 +99,9 @@ func DeclareAndBind(
 		queueType == SimpleQueueTransient, // delete when unused
 		queueType == SimpleQueueTransient, // exclusive
 		false,                             // no-wait
-		nil,                               // args
+		amqp.Table{
+			"x-dead-letter-exchange": "peril_dlx",
+		},
 	)
 	if err != nil {
 		return nil, amqp.Queue{}, fmt.Errorf("could not declare queue: %v", err)
