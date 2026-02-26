@@ -74,7 +74,6 @@ func SubscribeJSON[T any](
 				msg.Nack(false, false)
 				fmt.Println("NackDiscard type occured")
 			}
-			msg.Ack(false)
 		}
 	}()
 
